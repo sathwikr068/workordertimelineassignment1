@@ -1,0 +1,22 @@
+@if (position.visible) {
+  <div
+    class="wo-bar"
+    [style.left.px]="position.left"
+    [style.width.px]="position.width"
+    [title]="tooltipText">
+
+    <span class="wo-name">{{ order.data.name }}</span>
+
+    <div class="wo-right">
+      <span class="wo-badge status-{{ order.data.status }}">{{ statusLabel }}</span>
+      <button
+        class="wo-menu-btn"
+        type="button"
+        aria-label="Actions"
+        (click)="toggleMenu($event)">
+        ···
+      </button>
+    </div>
+
+  </div>
+}

@@ -1,0 +1,58 @@
+/* styles.scss — Global stylesheet */
+@import "@ng-select/ng-select/themes/default.theme.css";
+
+*, *::before, *::after {
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: "Circular-Std", -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  font-size: 14px;
+  color: #1a1a2e;
+  background: #fff;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.ng-select .ng-select-container {
+  border: 1px solid #e2e4e9 !important;
+  border-radius: 6px !important;
+  min-height: 38px !important;
+  font-family: "Circular-Std", sans-serif !important;
+  font-size: 14px !important;
+  color: #1a1a2e !important;
+  background: #fff !important;
+  box-shadow: none !important;
+}
+
+.ng-select.ng-select-focused:not(.ng-select-opened) > .ng-select-container {
+  border-color: #6c63ff !important;
+  box-shadow: 0 0 0 3px rgba(108, 99, 255, 0.12) !important;
+}
+
+.ng-select .ng-select-container .ng-value-container {
+  padding-left: 12px !important;
+}
+
+.ng-dropdown-panel {
+  border: 1px solid #e2e4e9 !important;
+  border-radius: 8px !important;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.10) !important;
+  overflow: hidden !important;
+}
+
+.ng-dropdown-panel .ng-option {
+  font-family: "Circular-Std", sans-serif !important;
+  font-size: 14px !important;
+  color: #374151 !important;
+  padding: 9px 14px !important;
+}
+
+.ng-dropdown-panel .ng-option.ng-option-selected,
+.ng-dropdown-panel .ng-option.ng-option-marked {
+  background: #f0f0ff !important;
+  color: #6c63ff !important;
+}

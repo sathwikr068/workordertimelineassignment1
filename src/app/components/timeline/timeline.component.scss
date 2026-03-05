@@ -1,0 +1,233 @@
+:host {
+  --wc-width:      220px;
+  --row-h:         56px;
+  --col-hdr-h:     52px;
+  --border:        #eaecf0;
+  --hover-bg:      #f5f5ff;
+  --today-color:   #8b83ff;
+  --text-main:     #1a1a2e;
+  --text-muted:    #9ca3af;
+  --bg:            #ffffff;
+
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  min-height: 0;
+  overflow: hidden;
+  background: var(--bg);
+  font-family: "Circular-Std", sans-serif;
+}
+
+.top-nav {
+  height: 44px;
+  padding: 0 24px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.logo {
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+.logo-nao   { color: #6c63ff; }
+.logo-logic { color: #1a1a2e; }
+
+.page-header {
+  padding: 20px 24px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-shrink: 0;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.page-title {
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--text-main);
+  margin: 0;
+  line-height: 1;
+}
+
+.grid-layout {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  border-top: 1px solid var(--border);
+  overflow: hidden;
+}
+
+.wc-col {
+  width: var(--wc-width);
+  min-width: 120px;
+  flex-shrink: 0;
+  border-right: 1px solid var(--border);
+  background: var(--bg);
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+
+.wc-col-header {
+  height: var(--col-hdr-h);
+  display: flex;
+  align-items: flex-end;
+  padding: 0 16px 10px;
+  font-size: 11px;
+  font-weight: 600;
+  color: var(--text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+}
+
+.wc-label {
+  height: var(--row-h);
+  display: flex;
+  align-items: center;
+  padding: 0 16px;
+  font-size: 13px;
+  font-weight: 400;
+  color: var(--text-main);
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+  transition: background 0.12s;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  &.row-hovered { background: var(--hover-bg); }
+}
+
+.scroll-area {
+  flex: 1;
+  min-width: 0;
+  overflow-x: auto;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: #ddd #f8f8f8;
+
+  &::-webkit-scrollbar       { height: 6px; width: 6px; }
+  &::-webkit-scrollbar-track { background: #f8f8f8; }
+  &::-webkit-scrollbar-thumb { background: #ddd; border-radius: 4px; }
+}
+
+.tl-content {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  overflow: visible;
+}
+
+.col-header-row {
+  position: relative;
+  height: var(--col-hdr-h);
+  border-bottom: 1px solid var(--border);
+  flex-shrink: 0;
+  background: #fff;
+  overflow: visible;
+}
+
+.col-hdr {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  padding-bottom: 8px;
+  border-right: 1px solid var(--border);
+  overflow: visible;
+}
+
+.current-month-pill {
+  position: absolute;
+  top: 6px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #6c63ff;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 600;
+  padding: 3px 10px;
+  border-radius: 99px;
+  white-space: nowrap;
+  font-family: "Circular-Std", sans-serif;
+  pointer-events: none;
+  z-index: 20;
+  width: max-content;
+}
+
+.col-hdr-label {
+  font-size: 12px;
+  font-weight: 400;
+  color: var(--text-muted);
+  white-space: nowrap;
+  font-family: "Circular-Std", sans-serif;
+  line-height: 1;
+
+  &.is-current {
+    color: #6c63ff;
+    font-weight: 600;
+  }
+}
+
+.tl-row {
+  position: relative;
+  height: var(--row-h);
+  border-bottom: 1px solid var(--border);
+  cursor: pointer;
+  transition: background 0.12s;
+  overflow: visible;
+  isolation: auto;
+
+  &.row-hovered { background: var(--hover-bg); }
+}
+
+.col-line {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  border-right: 1px solid var(--border);
+  pointer-events: none;
+}
+
+.today-line {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 1.5px;
+  background: #8b83ff;
+  opacity: 0.6;
+  z-index: 3;
+  pointer-events: none;
+}
+
+.add-hint {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(30, 30, 60, 0.72);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 500;
+  padding: 5px 14px;
+  border-radius: 20px;
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 10;
+  font-family: "Circular-Std", sans-serif;
+}

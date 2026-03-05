@@ -1,0 +1,187 @@
+:host {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 36px;
+  z-index: 4;
+  pointer-events: none;
+}
+
+.wo-bar {
+  position: absolute;
+  top: 0;
+  height: 100%;
+  background: #fff;
+  border: 1px solid #e2e4e9;
+  border-radius: 6px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 0 8px 0 12px;
+  gap: 6px;
+
+  pointer-events: all;
+  cursor: default;
+
+  overflow: hidden;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.06);
+  transition: box-shadow 0.15s;
+
+  min-width: 80px;
+  user-select: none;
+
+  /* enables responsive behavior */
+  container-type: inline-size;
+
+  &:hover {
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+
+    .wo-menu-btn {
+      opacity: 1;
+      width: auto;
+      margin-left: 2px;
+    }
+  }
+}
+
+.wo-name {
+  font-size: 13px;
+  font-weight: 400;
+  color: #1a1a2e;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  flex: 1;
+  min-width: 40px;
+
+  font-family: "Circular-Std", sans-serif;
+}
+
+.wo-right {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+
+  flex-shrink: 0;
+  position: relative;
+}
+
+.wo-badge {
+  font-size: 11px;
+  font-weight: 600;
+  padding: 2px 10px;
+  border-radius: 99px;
+
+  white-space: nowrap;
+  flex-shrink: 0;
+
+  font-family: "Circular-Std", sans-serif;
+
+  &.status-open        { background: #ede9fe; color: #6c63ff; }
+  &.status-in-progress { background: #ede9fe; color: #6c63ff; }
+  &.status-complete    { background: #dcfce7; color: #16a34a; }
+  &.status-blocked     { background: #fef3c7; color: #d97706; }
+}
+
+/* menu button now doesn't consume width until hover */
+
+.wo-menu-btn {
+  border: none;
+  background: none;
+  cursor: pointer;
+
+  padding: 2px 4px;
+
+  opacity: 0;
+  width: 0;
+  overflow: hidden;
+
+  transition: opacity 0.12s, width 0.12s;
+
+  font-size: 16px;
+  font-weight: 700;
+  color: #9ca3af;
+
+  line-height: 1;
+  border-radius: 4px;
+  letter-spacing: 1px;
+
+  &:hover {
+    background: #f3f4f6;
+    color: #374151;
+  }
+}
+
+/* hide badge when bars become small */
+
+@container (max-width: 120px) {
+  .wo-badge {
+    display: none;
+  }
+}
+
+.wo-dropdown {
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+
+  background: #fff;
+  border: 1px solid #e2e4e9;
+  border-radius: 8px;
+
+  box-shadow: 0 4px 20px rgba(0,0,0,0.13);
+  z-index: 99999;
+
+  min-width: 120px;
+  overflow: hidden;
+
+  animation: ddIn 0.1s ease;
+}
+
+@keyframes ddIn {
+  from {
+    opacity: 0;
+    transform: translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dd-item {
+  display: block;
+  width: 100%;
+
+  padding: 10px 16px;
+
+  border: none;
+  background: none;
+
+  font-size: 13.5px;
+  font-weight: 400;
+  color: #374151;
+
+  cursor: pointer;
+  text-align: left;
+
+  font-family: "Circular-Std", sans-serif;
+
+  transition: background 0.1s;
+
+  &:hover {
+    background: #f9fafb;
+  }
+
+  &.danger {
+    color: #dc2626;
+
+    &:hover {
+      background: #fef2f2;
+    }
+  }
+}

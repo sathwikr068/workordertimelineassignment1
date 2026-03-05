@@ -1,0 +1,96 @@
+<div class="panel-backdrop" (click)="onBackdropClick($event)">
+  <div class="panel">
+
+    <!-- ── Header ─────────────────────────────────────── -->
+    <div class="panel-head">
+      <div class="panel-head-left">
+        <h2 class="panel-title">Work Order Details</h2>
+        <p class="panel-subtitle">Specify the dates, name and status for this order</p>
+      </div>
+      <div class="panel-head-actions">
+        <button class="btn-cancel" type="button" (click)="onCancel()">Cancel</button>
+        <button class="btn-primary" type="button" (click)="onSubmit()">{{ submitLabel }}</button>
+      </div>
+    </div>
+
+    <!-- ── Body ───────────────────────────────────────── -->
+    <div class="panel-body">
+      <form [formGroup]="form" novalidate>
+
+        @if (error()) {
+          <div class="err-banner" role="alert">{{ error() }}</div>
+        }
+
+        <!-- Work Order Name -->
+        <div class="field" [class.field-error]="hasFieldError('name')">
+          <label class="field-label" for="wo-name">Work Order Name</label>
+          <input
+            id="wo-name"
+            type="text"
+            class="field-input"
+            formControlName="name"
+            placeholder="Acme Inc."
+            autocomplete="off">
+          @if (hasFieldError('name')) {
+            <span class="err-msg">Name is required</span>
+          }
+        </div>
+
+        <!-- Status -->
+        <div class="field">
+          <label class="field-label">Status</label>
+          <ng-select
+            formControlName="status"
+            [items]="statusOptions"
+            bindLabel="label"
+            bindValue="value"
+            [clearable]="false"
+            [searchable]="false">
+            <ng-template ng-label-tmp let-item="item">
+              <span class="status-selected status-{{ item.value }}">{{ item.label }}</span>
+            </ng-template>
+          </ng-select>
+        </div>
+
+        <!-- End Date -->
+        <div class="field" [class.field-error]="hasFieldError('endDate')">
+          <label class="field-label" for="end-date">End date</label>
+          <input
+            id="end-date"
+            type="text"
+            class="field-input"
+            formControlName="endDate"
+            placeholder="MM.DD.YYYY"
+            autocomplete="off"
+            maxlength="10"
+            (input)="onDateInput('endDate', $event)">
+          @if (hasFieldError('endDate')) {
+            <span class="err-msg">Enter a valid date (MM.DD.YYYY)</span>
+          }
+        </div>
+
+        <!-- Start Date -->
+        <div class="field" [class.field-error]="hasFieldError('startDate') || (submitted() && form.hasError('endBeforeStart'))">
+          <label class="field-label" for="start-date">Start date</label>
+          <input
+            id="start-date"
+            type="text"
+            class="field-input"
+            formControlName="startDate"
+            placeholder="MM.DD.YYYY"
+            autocomplete="off"
+            maxlength="10"
+            (input)="onDateInput('startDate', $event)">
+          @if (hasFieldError('startDate')) {
+            <span class="err-msg">Enter a valid date (MM.DD.YYYY)</span>
+          }
+          @if (submitted() && form.hasError('endBeforeStart')) {
+            <span class="err-msg">Start date must be before end date</span>
+          }
+        </div>
+
+      </form>
+    </div>
+
+  </div>
+</div>
