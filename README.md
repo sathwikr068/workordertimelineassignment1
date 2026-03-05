@@ -164,22 +164,8 @@ Unit tests cover:
 
 ---
 
-##  Demo Video
 
-[Loom link — see submission email]
-
-**Demo covers:**
-1. Sample data loaded on first open
-2. Day / Week / Month zoom switching
-3. Creating a work order by clicking empty row
-4. Editing via three-dot menu → Edit
-5. Deleting via three-dot menu → Delete
-6. Overlap error scenario
-7. Code walkthrough
-
----
-
-## Future Improvements (`@upgrade` comments in code)
+## Future Improvements
 
 - **Infinite horizontal scroll** — Detect scroll edge, prepend/append date columns dynamically with scroll position compensation
 - **Virtual scrolling** — CDK VirtualScrollViewport for large work center lists
